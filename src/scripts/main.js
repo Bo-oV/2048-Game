@@ -43,9 +43,11 @@ buttonStart.addEventListener('click', (e) => {
   if (!game || game.getStatus() !== 'playing') {
     game.start();
     buttonStart.textContent = 'Restart';
+    buttonStart.className = 'button restart';
   } else {
     game.restart();
     buttonStart.textContent = 'Start';
+    buttonStart.className = 'button start';
   }
   updateBoard(game.getState());
   updateScore(game.getScore());
@@ -82,3 +84,13 @@ document.addEventListener('keydown', (e) => {
   showMessage(game.getStatus());
 });
 // Write your code here
+
+const themeSwitch = document.getElementById('switch');
+
+themeSwitch.addEventListener('change', () => {
+  document.body.classList.toggle('dark', themeSwitch.checked);
+
+  document.querySelector('.dark-check--p').textContent = themeSwitch.checked
+    ? 'DARK'
+    : 'LIGHT';
+});

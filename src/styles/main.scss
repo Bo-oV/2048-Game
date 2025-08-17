@@ -1,84 +1,172 @@
+@import 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap';
+
 body {
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #fbf8ef;
-  font-family: sans-serif;
-  font-size: 24px;
-  font-weight: 900;
+  background: linear-gradient(107deg, #F8EEFF 0%, #FFE8E8 100.55%);
+  font-family: Orbitron, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.field-cell {
-  background: #d6cdc4;
-  width: 75px;
-  height: 75px;
-  border-radius: 5px;
-  color: #776e65;
-  box-sizing: border-box;
+body.dark {
+  background: linear-gradient(134deg, #1E1242 1.02%, #25087C 100%), linear-gradient(107deg, #F8EEFF 0%, #FFE8E8 100.55%);
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-check {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  &--p {
+  color: #333;
   text-align: center;
-  vertical-align: center;
+  font-family: Orbitron, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  }
+}
+
+.dark-check input {
+  display: none;
+  border: none;
+  outline: none;
+}
+
+.input-label {
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-image: url('/src/images/Sun.svg');
+  background-size: cover;
+  cursor: pointer;
   user-select: none;
+  transition: background-image 0.3s;
+}
+
+input:checked ~ .input-label {
+  background-image: url('/src/images/moon.svg');
+}
+
+.theme-toggle input:checked + .theme-label-text {
+  color: #fff;
+}
+
+.game-name {
+  display: inline-block;
+  width: 80px;
+  height: 60px;
+  background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.game-score {
+  width: auto;
+  height: auto;
+  color: #333;
+  text-align: center;
+  font-family: Orbitron, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.field-cell {
+  box-sizing: border-box;
+  width: 900px;
+  height: 80px;
+  background: linear-gradient(135deg, #FFF9F3 0%, #FFE2FF 100%);
+  border-radius: 5px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+  font-family: Orbitron, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+
 
   &--2 {
-    background: #eee4da;
+    background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
   }
 
   &--4 {
-    background: #ede0c8;
+    background: linear-gradient(135deg, #FBC2EB 0%, #A6C1EE 100%), #D9D9D9;
   }
 
   &--8 {
-    background: #f2b179;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%), #D9D9D9;
   }
 
   &--16 {
-    background: #f59563;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #FDDB92 0%, #D1FDFF 100%), linear-gradient(135deg, #FBC2EB 0%, #A6C1EE 100%), #D9D9D9;
+    font-weight: 500;
   }
 
   &--32 {
-    background: #f67c5f;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #84FAB0 0%, #8FD3F4 100%), #D9D9D9;
+    font-weight: 500;
   }
 
   &--64 {
-    background: #f65e3b;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #FCCB90 0%, #D57EEB 100%), #D9D9D9;
+    font-weight: 500;
   }
 
   &--128 {
-    background: #edcf72;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #E0C3FC 0%, #8EC5FC 100%), #D9D9D9;
+    font-weight: 600;
   }
 
   &--256 {
-    background: #edcc61;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #F6D365 0%, #FDA085 100%), #D9D9D9;
+    font-weight: 600;
   }
 
   &--512 {
-    background: #edc850;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%), #D9D9D9;
+    font-weight: 600;
   }
 
   &--1024 {
-    background: #edc53f;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%), #D9D9D9;
+    font-weight: 700;
   }
 
   &--2048 {
-    background: #edc22e;
-    color: #f9f6f2;
+    background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%), #D9D9D9;
+    font-weight: 700;
   }
 }
 
 .game-field {
-  background: #bbada0;
   border-spacing: 10px;
-  border-radius: 5px;
+  border-collapse: separate;
+  table-layout: fixed;
+  background: linear-gradient(134deg, #1E1242 1.02%, #25087C 100%);
+  border-radius: 10px;
 }
 
 .game-header {
@@ -106,63 +194,78 @@ h1 {
 
 .info {
   display: flex;
+  padding: 12px 25px;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background: #d6cdc4;
-  width: 75px;
-  height: 75px;
-  border-radius: 5px;
-  color: #776e65;
-  box-sizing: border-box;
-  font-size: 16px;
-  margin: 0 8px 0 0;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+  color: #333;
+  font-family: Orbitron, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .controls {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
 
 .button {
-  border: none;
-  border-radius: 5px;
+  display: flex;
+  padding: 34px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
-  color: #f9f6f2;
-  font-family: sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  width: 75px;
-  height: 75px;
-
-  transition: 0.25s ease background;
+  border-radius: 12px;
+  border: none;
 }
 
 .start {
-  background: #1dae28;
-  font-size: 20px;
-
+  width: 106px;
+  height: auto;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  transition: background-position 0.5s ease, font-weight 0.5s ease;
   &:hover {
-    background: #179921;
+    background-position: 100% 50%;
   }
 }
 
 .restart {
-  background: #f1b2b2;
-
+  width: 106px;
+  height: auto;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%);
+  background-position: 0% 50%;
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  transition: background-position 0.5s ease, font-weight 0.5s ease;
   &:hover {
-    background: #f87474;
+    background-position: 100% 50%;
   }
 }
 
 .message {
-  box-sizing: border-box;
-  width: 100%;
-  background: #d6cdc4;
-  color: #776e65;
-  padding: 10px;
+  color: #333;
   text-align: center;
-  border-radius: 5px;
-  font-size: 20px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .hidden {
