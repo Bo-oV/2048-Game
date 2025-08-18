@@ -7,11 +7,13 @@ const game = new Game();
 
 const gameScore = document.querySelector('.game-score');
 const buttonStart = document.querySelector('.button');
-const cells = document.querySelectorAll('.field-cell');
 
 const messageLose = document.querySelector('.message-lose');
 const messageWin = document.querySelector('.message-win');
 const messageStart = document.querySelector('.message-start');
+
+const tilesContainer = document.querySelector('.tiles-container');
+let tilesMap = {};
 
 function showMessage(message) {
   switch (message) {
@@ -30,13 +32,47 @@ function updateScore(score) {
 }
 
 function updateBoard(board) {
-  const newBoard = board.flat();
+  const newTilesMap = {};
 
-  cells.forEach((cell, index) => {
-    cell.textContent = newBoard[index] === 0 ? '' : newBoard[index];
-    cell.className = `field-cell${newBoard[index] ? ' field-cell--' + newBoard[index] : ''}`;
+  board.forEach((row, y) => {
+    row.forEach((value, x) => {
+      const key = `${x}-${y}`;
+
+      if (value === 0) {
+        if (tilesMap[key]) {
+          tilesContainer.removeChild(tilesMap[key]);
+        }
+
+        return;
+      }
+
+      if (tilesMap[key]) {
+        tilesMap[key].style.transition = 'transform 1.15s ease-in-out';
+        tilesMap[key].textContent = value;
+        tilesMap[key].className = `tile tile--${value}`;
+
+        tilesMap[key].style.transform =
+          `translate(${x * 90}px, ${y * 90}px) scale(1)`;
+        newTilesMap[key] = tilesMap[key];
+      } else {
+        const tile = document.createElement('div');
+
+        tile.classList.add('tile', `tile--${value}`);
+        tile.textContent = value;
+        tile.style.transform = `translate(${x * 90}px, ${y * 90}px) scale(0.5)`;
+        tilesContainer.appendChild(tile);
+
+        requestAnimationFrame(() => {
+          tile.style.transition = 'transform 0.25s ease-in-out';
+          tile.style.transform = `translate(${x * 90}px, ${y * 90}px) scale(1)`;
+        });
+
+        newTilesMap[key] = tile;
+      }
+    });
   });
   updateScore(game.getScore());
+  tilesMap = newTilesMap;
 }
 
 buttonStart.addEventListener('click', (e) => {
@@ -89,6 +125,10 @@ const themeSwitch = document.getElementById('switch');
 
 themeSwitch.addEventListener('change', () => {
   document.body.classList.toggle('dark', themeSwitch.checked);
+
+  document.querySelectorAll('p').forEach((p) => {
+    p.style.color = themeSwitch.checked ? '#fff' : '#333';
+  });
 
   document.querySelector('.dark-check--p').textContent = themeSwitch.checked
     ? 'DARK'

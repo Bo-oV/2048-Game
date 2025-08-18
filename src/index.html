@@ -14,9 +14,15 @@
   </head>
   <body>
     <div class="dark-check">
-      <input type="checkbox" id="switch">
-      <p class=" dark-check--p">LIGHT</p>
-      <label class="input-label" for="switch"></label>
+      <input
+        type="checkbox"
+        id="switch"
+      />
+      <p class="dark-check--p">LIGHT</p>
+      <label
+        class="input-label"
+        for="switch"
+      ></label>
     </div>
     <div class="container">
       <div class="game-header">
@@ -25,48 +31,59 @@
             Score:
             <span class="game-score">0</span>
           </p>
-          <h1 class="game-name">2048<br>GAME</h1>
+          <h1 class="game-name">
+            2048
+            <br />
+            GAME
+          </h1>
           <button class="button start">Start</button>
         </div>
       </div>
 
-      <table class="game-field">
-        <tbody>
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
+      <div class="game-container">
+        <table class="game-field">
+          <tbody>
+            <tr class="field-row">
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+            </tr>
+            <tr class="field-row">
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+            </tr>
+            <tr class="field-row">
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+            </tr>
+            <tr class="field-row">
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+              <td class="field-cell"></td>
+            </tr>
+          </tbody>
+        </table>
 
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
-
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
-
-          <tr class="field-row">
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-            <td class="field-cell"></td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="tiles-container"></div>
+      </div>
 
       <div class="message-container">
-        <p class="message message-lose hidden">You lose! <strong>Restart</strong> the game?</p>
+        <p class="message message-lose hidden">
+          You lose!
+          <strong>Restart</strong>
+          the game?
+        </p>
         <p class="message message-win hidden">Winner! Congrats! You did it!</p>
         <p class="message message-start">
-          Press <strong>"Start"</strong> to begin game. Good luck!
+          Press
+          <strong>"Start"</strong>
+          to begin game. Good luck!
         </p>
       </div>
     </div>

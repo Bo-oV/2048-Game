@@ -6,7 +6,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(107deg, #F8EEFF 0%, #FFE8E8 100.55%);
+  background: linear-gradient(107deg, #f8eeff 0%, #ffe8e8 100.55%);
   font-family: Orbitron, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -14,9 +14,12 @@ body {
 }
 
 body.dark {
-  background: linear-gradient(134deg, #1E1242 1.02%, #25087C 100%), linear-gradient(107deg, #F8EEFF 0%, #FFE8E8 100.55%);
+  background: linear-gradient(134deg, #1e1242 1.02%, #25087c 100%),
+    linear-gradient(107deg, #f8eeff 0%, #ffe8e8 100.55%);
   color: #fff;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .dark-check {
@@ -29,13 +32,13 @@ body.dark {
   gap: 5px;
 
   &--p {
-  color: #333;
-  text-align: center;
-  font-family: Orbitron, sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+    color: #333;
+    text-align: center;
+    font-family: Orbitron, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }
 
@@ -69,7 +72,7 @@ input:checked ~ .input-label {
   display: inline-block;
   width: 80px;
   height: 60px;
-  background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -87,86 +90,118 @@ input:checked ~ .input-label {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-
-.field-cell {
-  box-sizing: border-box;
-  width: 900px;
-  height: 80px;
-  background: linear-gradient(135deg, #FFF9F3 0%, #FFE2FF 100%);
-  border-radius: 5px;
-  text-align: center;
-  vertical-align: middle;
-  padding: 0;
-  font-family: Orbitron, sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-
-
-  &--2 {
-    background: linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%);
-  }
-
-  &--4 {
-    background: linear-gradient(135deg, #FBC2EB 0%, #A6C1EE 100%), #D9D9D9;
-  }
-
-  &--8 {
-    background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%), #D9D9D9;
-  }
-
-  &--16 {
-    background: linear-gradient(135deg, #FDDB92 0%, #D1FDFF 100%), linear-gradient(135deg, #FBC2EB 0%, #A6C1EE 100%), #D9D9D9;
-    font-weight: 500;
-  }
-
-  &--32 {
-    background: linear-gradient(135deg, #84FAB0 0%, #8FD3F4 100%), #D9D9D9;
-    font-weight: 500;
-  }
-
-  &--64 {
-    background: linear-gradient(135deg, #FCCB90 0%, #D57EEB 100%), #D9D9D9;
-    font-weight: 500;
-  }
-
-  &--128 {
-    background: linear-gradient(135deg, #E0C3FC 0%, #8EC5FC 100%), #D9D9D9;
-    font-weight: 600;
-  }
-
-  &--256 {
-    background: linear-gradient(135deg, #F6D365 0%, #FDA085 100%), #D9D9D9;
-    font-weight: 600;
-  }
-
-  &--512 {
-    background: linear-gradient(135deg, #F093FB 0%, #F5576C 100%), #D9D9D9;
-    font-weight: 600;
-  }
-
-  &--1024 {
-    background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%), #D9D9D9;
-    font-weight: 700;
-  }
-
-  &--2048 {
-    background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%), #D9D9D9;
-    font-weight: 700;
-  }
+.game-container {
+  position: relative;
+  width: calc(4 * 80px + 3 * 10px);
+  height: calc(4 * 80px + 3 * 10px);
 }
 
 .game-field {
-  border-spacing: 10px;
-  border-collapse: separate;
-  table-layout: fixed;
-  background: linear-gradient(134deg, #1E1242 1.02%, #25087C 100%);
   border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 10px;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(134deg, #1e1242, #25087c, #3a0ca3);
+  background-size: 400% 400%;
+  z-index: 1;
+}
+
+.field-cell {
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  background: linear-gradient(135deg, #fff9f3 0%, #ffe2ff 100%);
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  &:not([class*='--']) {
+    animation: pulse 5s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    background-color: #fff9f3;
+  }
+  50% {
+    background-color: #ffe2ff;
+  }
+}
+
+.tiles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.tile {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Orbitron, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 10px;
+
+  &--2 {
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+  }
+  &--4 {
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+  }
+  &--8 {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  }
+  &--16 {
+    background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%);
+    font-weight: 500;
+  }
+  &--32 {
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+    font-weight: 500;
+  }
+  &--64 {
+    background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);
+    font-weight: 500;
+  }
+  &--128 {
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+    font-weight: 600;
+  }
+  &--256 {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    font-weight: 600;
+  }
+  &--512 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    font-weight: 600;
+  }
+  &--1024 {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    font-weight: 700;
+  }
+  &--2048 {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    font-weight: 700;
+  }
 }
 
 .game-header {
@@ -230,14 +265,16 @@ h1 {
   width: 106px;
   height: auto;
   border-radius: 12px;
-  background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   background-size: 200% 200%;
   background-position: 0% 50%;
-  color: #FFF;
+  color: #fff;
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
-  transition: background-position 0.5s ease, font-weight 0.5s ease;
+  transition:
+    background-position 0.5s ease,
+    font-weight 0.5s ease;
   &:hover {
     background-position: 100% 50%;
   }
@@ -247,13 +284,15 @@ h1 {
   width: 106px;
   height: auto;
   border-radius: 12px;
-  background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%);
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
   background-position: 0% 50%;
-  color: #FFF;
+  color: #fff;
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
-  transition: background-position 0.5s ease, font-weight 0.5s ease;
+  transition:
+    background-position 0.5s ease,
+    font-weight 0.5s ease;
   &:hover {
     background-position: 100% 50%;
   }
@@ -285,6 +324,7 @@ h1 {
 }
 
 .message-container {
+  margin-top: 20px;
   width: 100%;
   height: 150px;
 }
