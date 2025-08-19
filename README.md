@@ -3,6 +3,10 @@
 Classic 2048 puzzle game built with JavaScript, HTML, and CSS.
 Move the tiles, merge matching numbers, and reach the magical 2048 tile!
 
+## 🌐 Try it Live
+
+Play the game directly in your browser: [2048 Game Live Demo](https://bo-ov.github.io/2048-Game/)
+
 ✨ Features
 
 🟨 Classic game rules — simple and fun
