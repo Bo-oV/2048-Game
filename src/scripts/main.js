@@ -92,39 +92,6 @@ buttonStart.addEventListener('click', (e) => {
   messageLose.classList.add('hidden');
 });
 
-let startX, startY;
-
-document.addEventListener('touchstart', (e) => {
-  const touch = e.touches[0];
-
-  startX = touch.clientX;
-  startY = touch.clientY;
-});
-
-document.addEventListener('touchend', (e) => {
-  if (game.getStatus() !== 'playing') {
-    return;
-  }
-
-  const touch = e.changedTouches[0];
-  const diffX = touch.clientX - startX;
-  const diffY = touch.clientY - startY;
-
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    if (diffX > 0) {
-      game.moveRight();
-    } else {
-      game.moveLeft();
-    }
-  } else {
-    if (diffY > 0) {
-      game.moveDown();
-    } else {
-      game.moveUp();
-    }
-  }
-});
-
 document.addEventListener('keydown', (e) => {
   if (game.getStatus() !== 'playing') {
     // eslint-disable-next-line no-useless-return
@@ -167,3 +134,54 @@ themeSwitch.addEventListener('change', () => {
     ? 'DARK'
     : 'LIGHT';
 });
+
+let startX = 0;
+let startY = 0;
+
+const gameContainer = document.querySelector('.game-container');
+
+gameContainer.addEventListener(
+  'touchstart',
+  (e) => {
+    e.preventDefault();
+
+    const touch = e.touches[0];
+
+    startX = touch.clientX;
+    startY = touch.clientY;
+  },
+  { passive: false },
+);
+
+gameContainer.addEventListener(
+  'touchend',
+  (e) => {
+    if (game.getStatus() !== 'playing') {
+      return;
+    }
+
+    const touch = e.changedTouches[0];
+    const diffX = touch.clientX - startX;
+    const diffY = touch.clientY - startY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > 0) {
+        game.moveRight();
+      } else {
+        game.moveLeft();
+      }
+    } else if (Math.abs(diffY) > 0) {
+      if (diffY > 0) {
+        game.moveDown();
+      } else {
+        game.moveUp();
+      }
+    }
+
+    updateBoard(game.getState());
+    messageLose.classList.add('hidden');
+    messageWin.classList.add('hidden');
+    showMessage(game.getStatus());
+  },
+  { passive: false },
+);
